@@ -94,8 +94,11 @@ playBtn.addEventListener('click', () => {
 prevBtn.addEventListener('click', prevSong)
 nextBtn.addEventListener('click', nextSong)
 
+// Update progress bar
 audio.addEventListener('timeupdate', updateProgress)
 
+// Scrub
 progressContainer.addEventListener('click', setProgress)
 
+// Auto play next song on song end
 audio.addEventListener('ended', nextSong)
