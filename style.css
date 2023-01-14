@@ -23,7 +23,7 @@ body{
     padding: 20px 30px;
     position: relative;
     margin: 100px 0;
-    z-index: 10;
+    z-index: 2;
 }
 
 .img-container{
@@ -95,6 +95,31 @@ body{
     border-radius: 15px;
     border-width: 0.5px;
     border: 0;
+}
+
+.drop-zone-hidden{
+    display: none;
+}
+
+.drop-zone-show{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    width: 50vw;
+    height: 60vh;
+    background-color: white;
+    border-radius: 50px;
+    border: dashed;
+    border-width: 2px;
+    border-color: #cdc2d0;
+}
+
+.btn-cancel{
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
 }
 
 .music-info{

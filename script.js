@@ -103,9 +103,9 @@ playBtn.addEventListener('click', () => {
 })
 
 // Upload new song
-async function uploadFile(){
+async function uploadFile(file){
     let formData = new FormData(); 
-    formData.append("file", fileUpload.files[0]);
+    formData.append("file", file[0]);
 
     $.ajax({
         url: "upload.php",
@@ -119,6 +119,49 @@ async function uploadFile(){
             else getSongs()
         }
     });     
+}
+
+async function openDropZone(){
+    var dropZone = document.getElementById("drop-zone");
+    dropZone.classList.remove('drop-zone-hidden')
+    dropZone.classList.add('drop-zone-show')
+
+    // Add event listeners
+    dropZone.addEventListener("dragenter", enter, false);
+    dropZone.addEventListener("dragover", over, false);
+    dropZone.addEventListener("dragleave", leave, false);
+    dropZone.addEventListener("drop", drop, false);
+  
+    function enter(e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  
+    function over(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      document.getElementsByClassName("drop-zone-show")[0].style.backgroundColor = '#eee'
+    }
+
+    function leave(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        document.getElementsByClassName("drop-zone-show")[0].style.backgroundColor = 'white'
+    }
+  
+    function drop(e) {
+      e.stopPropagation();
+      e.preventDefault();
+  
+      var file = e.dataTransfer.files;
+      uploadFile(file)
+    }
+}
+
+function closeDropZone(){
+    var dropZone = document.getElementById("drop-zone");
+    dropZone.classList.add('drop-zone-hidden')
+    dropZone.classList.remove('drop-zone-show')
 }
 
 
