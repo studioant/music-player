@@ -9,13 +9,19 @@ const title = document.querySelector('#title')
 const cover = document.querySelector('#cover')
 
 // Song titles
-const songs = ['My Guitar Cries', 'One Step Closer', 'Long Day', 'Sunny Afternoon']
+var songs = []
 
-// Keep track of songs
-let songIndex = 0
+// Get song titles from file
+$(document).ready(function(){
+    $.getJSON("file.php", function(data) {
+        songs = data
+        // Load first song into DOM
+        loadSong(songs[0])
+    });
+})
 
-// Initially load song into DOM
-loadSong(songs[songIndex])
+// Initialise song index
+let songIndex = 0;
 
 // Update song details
 function loadSong(song){
