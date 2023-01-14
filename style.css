@@ -85,6 +85,18 @@ body{
     outline: 0;
 }
 
+.upload-btn{
+    background-color: rgb(206, 206, 255);
+    color: #333;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 20px;
+    border-radius: 15px;
+    border-width: 0.5px;
+    border: 0;
+}
+
 .music-info{
     background-color: rgba(255,255,255,0.5);
     border-radius: 15px 15px 0 0;

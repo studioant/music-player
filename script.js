@@ -7,18 +7,24 @@ const progress = document.querySelector('.progress')
 const progressContainer = document.querySelector('.progress-container')
 const title = document.querySelector('#title')
 const cover = document.querySelector('#cover')
+const fileUpload = document.querySelector('#file-upload')
 
 // Song titles
 var songs = []
 
 // Get song titles from file
 $(document).ready(function(){
-    $.getJSON("file.php", function(data) {
+    getSongs()
+})
+
+async function getSongs(){
+    $.getJSON("getSongs.php", function(data) {
+        songs = []
         songs = data
         // Load first song into DOM
         loadSong(songs[0])
     });
-})
+}
 
 // Initialise song index
 let songIndex = 0;
@@ -95,6 +101,26 @@ playBtn.addEventListener('click', () => {
         playSong()
     }
 })
+
+// Upload new song
+async function uploadFile(){
+    let formData = new FormData(); 
+    formData.append("file", fileUpload.files[0]);
+
+    $.ajax({
+        url: "upload.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if(response != '')
+                alert(response)
+            else getSongs()
+        }
+    });     
+}
+
 
 // Change song
 prevBtn.addEventListener('click', prevSong)
