@@ -8,6 +8,7 @@ const progressContainer = document.querySelector('.progress-container')
 const title = document.querySelector('#title')
 const cover = document.querySelector('#cover')
 const fileUpload = document.querySelector('#file-upload')
+const uploadBtn = document.querySelector('#upload-btn')
 
 // Song titles
 var songs = []
@@ -121,10 +122,15 @@ async function uploadFile(file){
     });     
 }
 
-async function openDropZone(){
-    var dropZone = document.getElementById("drop-zone");
+uploadBtn.addEventListener("click", function(){
+    var dropZone = document.getElementById("drop-zone")
     dropZone.classList.remove('drop-zone-hidden')
     dropZone.classList.add('drop-zone-show')
+    setTimeout(()=> {
+        dropZone.classList.toggle('open')
+    },5);
+    uploadBtn.disabled = true;
+    
 
     // Add event listeners
     dropZone.addEventListener("dragenter", enter, false);
@@ -156,12 +162,14 @@ async function openDropZone(){
       var file = e.dataTransfer.files;
       uploadFile(file)
     }
-}
+})
 
 function closeDropZone(){
     var dropZone = document.getElementById("drop-zone");
     dropZone.classList.add('drop-zone-hidden')
     dropZone.classList.remove('drop-zone-show')
+    dropZone.classList.remove('open')
+    uploadBtn.disabled = false;
 }
 
 

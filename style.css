@@ -107,13 +107,20 @@ body{
     align-items: center;
     justify-content: center;
     z-index: 3;
-    width: 50vw;
-    height: 60vh;
+    width: 1vw;
+    height: 1vh;
     background-color: white;
     border-radius: 50px;
     border: dashed;
     border-width: 2px;
     border-color: #cdc2d0;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.open{
+    transition: width 0.5s ease, height 0.5s ease;
+    width: 50vw;
+    height: 50vh;
 }
 
 .btn-cancel{
